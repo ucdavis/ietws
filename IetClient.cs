@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Ietws
 {
@@ -15,7 +16,7 @@ namespace Ietws
             HttpProvider = new HttpClient();
         }
 
-        public ContactRequests Contact => new ContactRequests(this.BaseUrl, this);
+        public ContactRequests Contact => new ContactRequests(this);
 
         public string Key { get; private set; }
         public string BaseUrl { get; private set; }
@@ -33,9 +34,10 @@ namespace Ietws
         protected async Task<T> GetAsync<T>(string url) {
             var result = await client.HttpProvider.GetAsync(url);
 
-            if (result.IsSuccessStatusCode) {
-                var resultContect = await result.Content.ReadAsStringAsync();
-            }
+            result.EnsureSuccessStatusCode();
+
+            var resultContent = await result.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(resultContent);
         }
 
         protected async Task<HttpResponseMessage> GetAsync() {
@@ -67,9 +69,9 @@ namespace Ietws
 
         public ContactRequests(IetClient client) : base(client) { }
 
-        public string Search(string q) {
+        public async Task<ContactResults> Search(string q) {
             this._url = client.BaseUrl + "iam/people/contactinfo/search";
-            return await this.GetAsync();
+            return await this.GetAsync<ContactResults>(_url);
         }
 
     }

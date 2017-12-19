@@ -19,16 +19,14 @@ namespace Ietws
         }
 
         protected async Task<T> GetAsync<T>() {
-            // TODO: build query string
-            this.QueryItems.Add("key", client.Key);
-
             var uri = new StringBuilder();
             uri.Append(client.BaseUrl);
             uri.Append(this.Url);
-            uri.Append("?");
+            uri.AppendFormat("?key={0}", client.Key); // add in the key
 
+            // add in any additional query string params
             foreach (string key in this.QueryItems.Keys) {
-                uri.AppendFormat("{0}={1}&", key, this.QueryItems[key]);
+                uri.AppendFormat("&{0}={1}", key, this.QueryItems[key]);
             }
             
             var result = await client.HttpProvider.GetAsync(uri.ToString());

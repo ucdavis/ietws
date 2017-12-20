@@ -1,4 +1,4 @@
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +10,12 @@ namespace Ietws
         private readonly IetClient client;
 
         protected string Url { get; set; }
-        protected StringDictionary QueryItems { get; set; }
+        protected Dictionary<string, string> QueryItems { get; set; }
 
         public RequestBase(IetClient client)
         {
             this.client = client;
-            this.QueryItems = new StringDictionary();
+            this.QueryItems = new Dictionary<string, string>();
         }
 
         protected async Task<T> GetAsync<T>() {
@@ -28,7 +28,10 @@ namespace Ietws
             foreach (string key in this.QueryItems.Keys) {
                 uri.AppendFormat("&{0}={1}", key, this.QueryItems[key]);
             }
-            
+
+            // TODO: remove
+            System.Console.WriteLine(uri.ToString());
+
             var result = await client.HttpProvider.GetAsync(uri.ToString());
 
             result.EnsureSuccessStatusCode();

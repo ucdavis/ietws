@@ -16,6 +16,10 @@ namespace Ietws
 
         public ContactRequests Contacts => new ContactRequests(this);
 
+        public PeopleRequests People => new PeopleRequests(this);
+
+        public KerberosRequests Kerberos => new KerberosRequests(this);
+
         public string Key { get; private set; }
         public string BaseUrl { get; private set; }
         public HttpClient HttpProvider { get; private set; }

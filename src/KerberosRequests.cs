@@ -9,21 +9,21 @@ namespace Ietws
 
         // Can search on iamId, userId, uuid, retType
         // return type is 'people' for people related info, default for identity store view
-        public async Task<ContactResults> Search(string field, string value, string returnType = "people")
+        public async Task<KerberosResults> Search(string field, string value, string returnType = "people")
         {
             this.Url = "iam/people/prikerbacct/search";
 
             this.QueryItems.Add(field, value);
             this.QueryItems.Add("retType", returnType);
 
-            return await this.GetAsync<ContactResults>();
+            return await this.GetAsync<KerberosResults>();
         }
 
-        public async Task<ContactResults> Get(string iamId)
+        public async Task<KerberosResults> Get(string iamId)
         {
             this.Url = "iam/people/prikerbacct/" + iamId;
 
-            return await this.GetAsync<ContactResults>();
+            return await this.GetAsync<KerberosResults>();
         }
     }
 }

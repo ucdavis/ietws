@@ -8,20 +8,20 @@ namespace Ietws
         public PeopleRequests(IetClient client) : base(client) { }
 
         // Can search on oFirstName, oMiddleName,oLastName,dFirstName,dMiddleName,dLastName,mothraId,studentId,externalId,iamId,ppsId,bannerPIdM
-        public async Task<ContactResults> Search(PeopleSearchField field, string value)
+        public async Task<PeopleResults> Search(PeopleSearchField field, string value)
         {
             this.Url = "iam/people/search";
 
             this.QueryItems.Add(field.ToString(), value);
 
-            return await this.GetAsync<ContactResults>();
+            return await this.GetAsync<PeopleResults>();
         }
 
-        public async Task<ContactResults> Get(string iamId)
+        public async Task<PeopleResults> Get(string iamId)
         {
             this.Url = "iam/people/" + iamId;
 
-            return await this.GetAsync<ContactResults>();
+            return await this.GetAsync<PeopleResults>();
         }
     }
 }

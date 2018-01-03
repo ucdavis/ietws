@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Ietws;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace tests
@@ -6,13 +7,13 @@ namespace tests
     [TestClass]
     public class UnitTest1
     {
-        const string key = "";
+        const string key = "55ca637-8e507-0ef3e05-33121788-02ada";
 
         [TestMethod]
         public async Task CanSearchContactEmail()
         {
             var client = new Ietws.IetClient(key);
-            var result = await client.Contacts.Search("email", "srkirkland@ucdavis.edu");
+            var result = await client.Contacts.Search(ContactSearchField.email, "srkirkland@ucdavis.edu");
 
             // 0 is success
             Assert.AreEqual(result.ResponseStatus, 0);
@@ -38,7 +39,7 @@ namespace tests
         [TestMethod]
         public async Task CanGetKerberos() {
             var client = new Ietws.IetClient(key);
-            var result = await client.Kerberos.Search("iamId", "1000029584");
+            var result = await client.Kerberos.Search(KerberosSearchField.iamId, "1000029584");
 
             // 0 is success
             Assert.AreEqual(result.ResponseStatus, 0);

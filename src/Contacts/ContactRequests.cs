@@ -7,11 +7,11 @@ namespace Ietws
 
         // https://ucdavis.jira.com/wiki/spaces/IETP/pages/132808797/Identity+Store+Contact+Info+API
         // Can search on iamId, email, hsEmail, campusEmail, refType
-        public async Task<ContactResults> Search(string field, string value) {
+        public async Task<ContactResults> Search(ContactSearchField field, string value) {
 
             this.Url = "iam/people/contactinfo/search";
 
-            this.QueryItems.Add(field, value);
+            this.QueryItems.Add(field.ToString(), value);
 
             return await this.GetAsync<ContactResults>();
         }

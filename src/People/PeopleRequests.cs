@@ -8,11 +8,11 @@ namespace Ietws
         public PeopleRequests(IetClient client) : base(client) { }
 
         // Can search on oFirstName, oMiddleName,oLastName,dFirstName,dMiddleName,dLastName,mothraId,studentId,externalId,iamId,ppsId,bannerPIdM
-        public async Task<ContactResults> Search(string field, string value)
+        public async Task<ContactResults> Search(PeopleSearchField field, string value)
         {
             this.Url = "iam/people/search";
 
-            this.QueryItems.Add(field, value);
+            this.QueryItems.Add(field.ToString(), value);
 
             return await this.GetAsync<ContactResults>();
         }

@@ -1,4 +1,6 @@
-# ietws
+# IET Web Service
+
+## https://www.nuget.org/packages/ietws/
 
 UCD IET WebService SDK for .Net Standard
 
@@ -9,5 +11,5 @@ This SDK attempts to provide a nice, standardized method for querying their web 
 # Example
 ```
 var client = new IetClient(apiKey);
-var result = await client.Contacts.Search("email", "email@ucdavis.edu");
+var result = await client.Contacts.Search(ContactSearchField.email, "email@ucdavis.edu");
 ```

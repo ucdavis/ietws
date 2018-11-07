@@ -13,10 +13,4 @@ namespace Ietws
         titleCode,
         assocRank
     }
-
-    public enum ReturnType 
-    {
-        @default ,
-        iamids
-    }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Ietws;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -54,6 +55,34 @@ namespace tests
         public async Task CanGetKerberos() {
             var client = new Ietws.IetClient(key);
             var result = await client.Kerberos.Search(KerberosSearchField.iamId, "1000029584");
+
+            // 0 is success
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000029584");
+
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
+        public async Task CanGetPPSIamIds()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.PPSAssociations.GetIamIds(PPSAssociationsSearchField.deptCode, "030003");
+
+            // 0 is success
+            Assert.AreEqual(result.ResponseStatus, 0);
+            
+            Assert.IsTrue(result.ResponseData.Results.Length > 500);
+
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
+        public async Task CanGetPPSAssociations()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.PPSAssociations.Search(PPSAssociationsSearchField.iamId, "1000029584");
 
             // 0 is success
             Assert.AreEqual(result.ResponseStatus, 0);

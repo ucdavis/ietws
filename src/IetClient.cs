@@ -20,6 +20,8 @@ namespace Ietws
 
         public KerberosRequests Kerberos => new KerberosRequests(this);
 
+        public PPSAssociationsRequests PPSAssociations => new PPSAssociationsRequests(this);
+
         public string Key { get; private set; }
         public string BaseUrl { get; private set; }
         public HttpClient HttpProvider { get; private set; }

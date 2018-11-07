@@ -8,7 +8,7 @@ namespace tests
     [TestClass]
     public class ApiTests
     {
-        const string key = "566baf6-afc46-f7fde05-38f20788-04e84";
+        const string key = "";
 
         [TestMethod]
         public async Task CanSearchContactEmail()

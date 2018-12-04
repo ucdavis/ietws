@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using ietws.PPSDepartment;
 
 namespace Ietws
 {
@@ -21,6 +22,8 @@ namespace Ietws
         public KerberosRequests Kerberos => new KerberosRequests(this);
 
         public PPSAssociationsRequests PPSAssociations => new PPSAssociationsRequests(this);
+
+        public PPSDepartmentRequest PpsDepartment => new PPSDepartmentRequest(this);
 
         public string Key { get; private set; }
         public string BaseUrl { get; private set; }

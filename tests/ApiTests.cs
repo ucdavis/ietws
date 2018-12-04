@@ -91,5 +91,27 @@ namespace tests
 
             Assert.IsNotNull(client);
         }
+
+        [TestMethod]
+        public async Task CanGetPPSDepartment()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.PpsDepartment.Search("030000");
+
+            Assert.AreEqual(result.ResponseStatus, 0);
+            Assert.AreEqual(result.ResponseData.Results[0].deptDisplayName, "AGR & ENV SCI DEANS OFFICE");
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
+        public async Task CanGetPPSDepartmentWhenNotFound()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.PpsDepartment.Search("099000");
+
+            Assert.AreEqual(result.ResponseStatus, 0);
+            Assert.AreEqual(result.ResponseData.Results.Length, 0);
+            Assert.IsNotNull(client);
+        }
     }
 }

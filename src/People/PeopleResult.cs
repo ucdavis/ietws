@@ -26,5 +26,10 @@ namespace Ietws
         public bool IsStudent { get; set; }
         public bool IsExternal { get; set; }
         public DateTime ModifyDate { get; set; }
+
+        public string FirstName => string.IsNullOrWhiteSpace(DFirstName) ? OFirstName : DFirstName;
+        public string MiddleName => string.IsNullOrWhiteSpace(DMiddleName) ? OMiddleName : DMiddleName;
+        public string LastName => string.IsNullOrWhiteSpace(DFirstName) ? OLastName : DLastName;
+        public string FullName => string.IsNullOrWhiteSpace(DFirstName) ? OFullName : DFullName;
     }
 }

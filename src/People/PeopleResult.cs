@@ -25,6 +25,7 @@ namespace Ietws
         public bool IsFaculty { get; set; }
         public bool IsStudent { get; set; }
         public bool IsExternal { get; set; }
+        public bool IsStaff { get; set; }
         public DateTime ModifyDate { get; set; }
 
         public string FirstName => string.IsNullOrWhiteSpace(DFirstName) ? OFirstName : DFirstName;

@@ -6,6 +6,7 @@ namespace Ietws
     {
         public string IamId { get; set; }
         public string PpsId { get; set; }
+        public string EmployeeId { get; set; }
         public string MothraId { get; set; }
         public string StudentId { get; set; }
         public string BannerPidm { get; set; }

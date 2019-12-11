@@ -8,11 +8,18 @@ namespace Ietws
     {
         public IetClient(string key, string baseUrl = "https://iet-ws.ucdavis.edu/api/")
         {
-            // TODO: config setting
             Key = key;
             BaseUrl = baseUrl;
 
             HttpProvider = new HttpClient();
+        }
+
+        public IetClient(HttpClient client, string key, string baseUrl = "https://iet-ws.ucdavis.edu/api/")
+        {
+            Key = key;
+            BaseUrl = baseUrl;
+
+            HttpProvider = client;
         }
 
         public ContactRequests Contacts => new ContactRequests(this);

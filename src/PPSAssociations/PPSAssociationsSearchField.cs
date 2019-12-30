@@ -9,7 +9,7 @@ namespace Ietws
         adminIsUCDHS,
         apptDeptCode,
         apptIsUCDHS,
-        bouOrgId,
+        bouOrgOId,
         titleCode,
         assocRank
     }

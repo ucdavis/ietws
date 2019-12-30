@@ -7,7 +7,7 @@ namespace Ietws
         public PPSAssociationsRequests(IetClient client) : base(client) { }
 
         // https://ucdavis.jira.com/wiki/spaces/IETP/pages/132808762/Identity+Store+PPS+Associations+API
-        // Can search on iamId , deptCode , isUCDHS , adminDeptCode , adminIsUCDHS , apptDeptCode , apptIsUCDHS , bouOrgId , titleCode , assocRank
+        // Can search on iamId , deptCode , isUCDHS , adminDeptCode , adminIsUCDHS , apptDeptCode , apptIsUCDHS , bouOrgOId , titleCode , assocRank
         // retType can be 'people' or 'default'
         public async Task<PPSAssociationResults> Search(PPSAssociationsSearchField field, string value, string retType = "default")
         {

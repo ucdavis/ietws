@@ -112,7 +112,7 @@ namespace tests
         public async Task CanGetPPSAssociationsWithPeopleReturnType()
         {
             var client = new Ietws.IetClient(key);
-            var result = await client.PPSAssociations.Search(PPSAssociationsSearchField.iamId, "1000029584", "people");
+            var result = await client.PPSAssociations.Search<PeopleResults>(PPSAssociationsSearchField.iamId, "1000029584", "people");
 
             // 0 is success
             Assert.AreEqual(result.ResponseStatus, 0);

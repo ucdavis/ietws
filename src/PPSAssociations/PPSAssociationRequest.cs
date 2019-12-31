@@ -19,16 +19,12 @@ namespace Ietws
             this.Url = "iam/associations/pps/search";
 
             this.QueryItems.Add(field.ToString(), value);
+            this.QueryItems.Add("retType", retType);
 
             return await this.GetAsync<T>();
         }
 
         public async Task<PPSAssociationIamIdResults> GetIamIds(PPSAssociationsSearchField field, string value, string retType = "default")
-        {
-            return await GetIamIds<PPSAssociationIamIdResults>(field, value, retType);
-        }
-
-        public async Task<T> GetIamIds<T>(PPSAssociationsSearchField field, string value, string retType = "default") where T : class
         {
             this.Url = "iam/associations/pps/search";
 
@@ -36,7 +32,7 @@ namespace Ietws
 
             this.QueryItems.Add("retType", "iamids");
 
-            return await this.GetAsync<T>();
+            return await this.GetAsync<PPSAssociationIamIdResults>();
         }
 
         public async Task<PPSAssociationResults> Get(string iamId)

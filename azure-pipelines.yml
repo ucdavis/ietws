@@ -18,7 +18,7 @@ variables:
   patchVersion: $[counter(variables['minorVersion'], 0)]
   version: $(majorVersion).$(minorVersion).$(patchVersion)
 
-name: $(version)
+name: $(majorVersion).$(minorVersion).$(patchVersion)
 
 steps:
 - task: Bash@3

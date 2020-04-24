@@ -1,5 +1,7 @@
 # IET Web Service
 
+[![Build Status](https://dev.azure.com/ucdavis/IETWS/_apis/build/status/ucdavis.ietws?branchName=master)](https://dev.azure.com/ucdavis/IETWS/_build/latest?definitionId=20&branchName=master)
+
 ## https://www.nuget.org/packages/ietws/
 
 UCD IET WebService SDK for .Net Standard

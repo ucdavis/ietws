@@ -68,6 +68,21 @@ namespace tests
         }
 
         [TestMethod]
+        public async Task CanGetPersonInfo3()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.People.Search(PeopleSearchField.employeeId, "10220155");
+
+            // 0 is success
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000009309");
+            Assert.AreEqual(result.ResponseData.Results[0].EmployeeId, "10220155");
+
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
         public async Task CanGetKerberos() {
             var client = new Ietws.IetClient(key);
             var result = await client.Kerberos.Search(KerberosSearchField.iamId, "1000029584");

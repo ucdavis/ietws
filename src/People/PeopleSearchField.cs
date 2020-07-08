@@ -12,6 +12,7 @@ namespace Ietws
         externalId,
         iamId,
         ppsId,
+        employeeId,
         bannerPIdM
     }
 }

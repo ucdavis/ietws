@@ -124,6 +124,21 @@ namespace tests
         }
 
         [TestMethod]
+        public async Task CanGetPPSAssociationsSupervisorIamId()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.PPSAssociations.Search(PPSAssociationsSearchField.iamId, "1000009309");
+
+            // 0 is success
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000009309");
+            Assert.AreEqual(result.ResponseData.Results[0].reportsToIAMID, "1000029584");
+
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
         public async Task CanGetPPSAssociationsWithPeopleReturnType()
         {
             var client = new Ietws.IetClient(key);

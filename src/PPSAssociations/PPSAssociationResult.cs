@@ -31,7 +31,10 @@ namespace Ietws
         public string percentFullTime { get; set; }
         public string createDate { get; set; }
         public string modifyDate { get; set; }       
-        
+        public string reportsToEmplID { get; set; }
+        public string reportsToIAMID { get; set; }
+
+
     }
 
       public class PPSAssociationIamIdResult {

@@ -20,6 +20,7 @@ namespace Ietws
         public string DMiddleName { get; set; }
         public string DLastName { get; set; }
         public string DSuffix { get; set; }
+        public string DPronouns { get; set; }
         public string DFullName { get; set; }
         public bool IsEmployee { get; set; }
         public bool IsHSEmployee { get; set; }

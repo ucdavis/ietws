@@ -3,13 +3,23 @@ using System.Threading.Tasks;
 using ietws.PPSDepartment;
 using Ietws;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.Configuration;
 
 namespace tests
 {
     [TestClass]
     public class ApiTests
     {
-        const string key = "";
+        protected readonly string key;
+
+        public ApiTests()
+        {
+            var configuration = new ConfigurationBuilder()
+            .AddUserSecrets<ApiTests>()
+            .Build();
+
+            key = configuration.GetSection("Key").Value;
+        }
 
         [TestMethod]
         public async Task CanSearchContactEmail()

@@ -82,6 +82,25 @@ namespace tests
             Assert.IsNotNull(client);
         }
 
+        /// <summary>
+        /// changing data, and multiple results so want to modify this before running it.
+        /// </summary>
+        /// <returns></returns>
+        //[TestMethod]
+        //public async Task CanSearchByLastModifiedDate()
+        //{
+        //    var client = new Ietws.IetClient(key);
+        //    var result = await client.People.Search(PeopleSearchField.modifyDateAfter, "2023-09-1");
+
+        //    // 0 is success
+        //    Assert.AreEqual(result.ResponseStatus, 0);
+
+        //    Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000009309");
+        //    Assert.AreEqual(result.ResponseData.Results[0].EmployeeId, "10220155");
+
+        //    Assert.IsNotNull(client);
+        //}
+
         [TestMethod]
         public async Task CanGetPronounInfo1()
         {

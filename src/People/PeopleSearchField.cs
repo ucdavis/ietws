@@ -13,6 +13,7 @@ namespace Ietws
         iamId,
         ppsId,
         employeeId,
-        bannerPIdM
+        bannerPIdM,
+        modifyDateAfter,
     }
 }

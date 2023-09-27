@@ -3,13 +3,23 @@ using System.Threading.Tasks;
 using ietws.PPSDepartment;
 using Ietws;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.Configuration;
 
 namespace tests
 {
     [TestClass]
     public class ApiTests
     {
-        const string key = "";
+        protected readonly string key;
+
+        public ApiTests()
+        {
+            var configuration = new ConfigurationBuilder()
+            .AddUserSecrets<ApiTests>()
+            .Build();
+
+            key = configuration.GetSection("Key").Value;
+        }
 
         [TestMethod]
         public async Task CanSearchContactEmail()
@@ -34,6 +44,9 @@ namespace tests
             Assert.AreEqual(result.ResponseStatus, 0);
 
             Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000029584");
+            Assert.AreEqual(result.ResponseData.Results[0].Email, "srkirkland@ucdavis.edu");
+            Assert.IsNull(result.ResponseData.Results[0].CampusEmail);
+            Assert.IsNull(result.ResponseData.Results[0].HsEmail);
 
             Assert.IsNotNull(client);
         }
@@ -48,6 +61,7 @@ namespace tests
             Assert.AreEqual(result.ResponseStatus, 0);
 
             Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000029584");
+            Assert.AreEqual(result.ResponseData.Results[0].CampusEmail, "srkirkland@ucdavis.edu");
 
             Assert.IsNotNull(client);
         }

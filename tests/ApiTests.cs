@@ -46,7 +46,7 @@ namespace tests
             Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000029584");
             Assert.AreEqual(result.ResponseData.Results[0].Email, "srkirkland@ucdavis.edu");
             Assert.IsNull(result.ResponseData.Results[0].CampusEmail);
-            Assert.IsNull(result.ResponseData.Results[0].HsEmail);
+            Assert.IsNull(result.ResponseData.Results[0].HsEmail); 
 
             Assert.IsNotNull(client);
         }

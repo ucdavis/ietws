@@ -30,6 +30,8 @@ namespace Ietws
         public bool IsStaff { get; set; }
         public DateTime ModifyDate { get; set; }
 
+        public string CampusEmail { get; set; } //This one might be the official one to use, or at leat the one to most likely have a value
+
         public string FirstName => string.IsNullOrWhiteSpace(DFirstName) ? OFirstName : DFirstName;
         public string MiddleName => string.IsNullOrWhiteSpace(DMiddleName) ? OMiddleName : DMiddleName;
         public string LastName => string.IsNullOrWhiteSpace(DLastName) ? OLastName : DLastName;

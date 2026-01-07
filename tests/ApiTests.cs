@@ -300,5 +300,19 @@ namespace tests
 
             Assert.IsNotNull(client);
         }
+
+        [TestMethod]
+        public async Task CanSearchHsDataByEmail2()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.HsData.Search(HsDataSearchField.iamId, "1000009309"); //Not a HS Employee
+
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            Assert.AreEqual(result.ResponseData.Results.Length, 0);
+
+
+            Assert.IsNotNull(client);
+        }
     }
 }

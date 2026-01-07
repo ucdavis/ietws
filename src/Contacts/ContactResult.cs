@@ -9,7 +9,7 @@ namespace Ietws
         public string WorkPhone { get; set; }
         public string WorkCell { get; set; }
 
-        // Not Used?
+        // Not Used? -- HsData is the endpoint to get this info
         public string HsEmail { get; set; }
 
 

@@ -4,6 +4,7 @@ using ietws.PPSDepartment;
 using Ietws;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace tests
 {
@@ -36,7 +37,8 @@ namespace tests
         }
 
         [TestMethod]
-        public async Task CanGetContactInfo() {
+        public async Task CanGetContactInfo()
+        {
             var client = new Ietws.IetClient(key);
             var result = await client.Contacts.Get("1000029584");
 
@@ -46,7 +48,7 @@ namespace tests
             Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000029584");
             Assert.AreEqual(result.ResponseData.Results[0].Email, "srkirkland@ucdavis.edu");
             Assert.IsNull(result.ResponseData.Results[0].CampusEmail);
-            Assert.IsNull(result.ResponseData.Results[0].HsEmail); 
+            Assert.IsNull(result.ResponseData.Results[0].HsEmail);
 
             Assert.IsNotNull(client);
         }
@@ -155,13 +157,14 @@ namespace tests
             Assert.AreEqual(result.ResponseStatus, 0);
 
             Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000219473");
-            Assert.AreEqual(result.ResponseData.Results[0].DPronouns, "He, Him");
+            Assert.AreEqual(result.ResponseData.Results[0].DPronouns, "he/him/his");
 
             Assert.IsNotNull(client);
         }
 
         [TestMethod]
-        public async Task CanGetKerberos() {
+        public async Task CanGetKerberos()
+        {
             var client = new Ietws.IetClient(key);
             var result = await client.Kerberos.Search(KerberosSearchField.iamId, "1000029584");
 
@@ -181,7 +184,7 @@ namespace tests
 
             // 0 is success
             Assert.AreEqual(result.ResponseStatus, 0);
-            
+
             Assert.IsTrue(result.ResponseData.Results.Length > 500);
 
             Assert.IsNotNull(client);
@@ -197,6 +200,24 @@ namespace tests
             Assert.AreEqual(result.ResponseStatus, 0);
 
             Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000029584");
+
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
+        public async Task CanGetPPSAssociations2()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.PPSAssociations.Search(PPSAssociationsSearchField.bouOrgOId, "F80B657C9EF523A0E0340003BA8A560D");
+
+            // 0 is success
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            //save results.ResponseData.Results to a json string
+            var json = JsonConvert.SerializeObject(result.ResponseData.Results);
+
+
+            Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000000155");
 
             Assert.IsNotNull(client);
         }
@@ -260,6 +281,37 @@ namespace tests
 
             Assert.AreEqual(result.ResponseStatus, 0);
             Assert.AreEqual(result.ResponseData.Results.Length, 0);
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
+        public async Task CanSearchHsDataByEmail()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.HsData.Search(HsDataSearchField.iamId, "1000382479");
+
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            Assert.AreEqual(result.ResponseData.Results[0].IamId, "1000382479");
+
+            Assert.IsNotNull(result.ResponseData.Results[0].HealthEmail);
+
+            Assert.IsTrue(result.ResponseData.Results[0].HealthEmail.Contains("@health.ucdavis.edu"));
+
+            Assert.IsNotNull(client);
+        }
+
+        [TestMethod]
+        public async Task CanSearchHsDataByEmail2()
+        {
+            var client = new Ietws.IetClient(key);
+            var result = await client.HsData.Search(HsDataSearchField.iamId, "1000009309"); //Not a HS Employee
+
+            Assert.AreEqual(result.ResponseStatus, 0);
+
+            Assert.AreEqual(result.ResponseData.Results.Length, 0);
+
+
             Assert.IsNotNull(client);
         }
     }

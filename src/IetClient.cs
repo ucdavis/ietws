@@ -32,6 +32,8 @@ namespace Ietws
 
         public PPSDepartmentRequest PpsDepartment => new PPSDepartmentRequest(this);
 
+        public HsDataRequests HsData => new HsDataRequests(this);
+
         public string Key { get; private set; }
         public string BaseUrl { get; private set; }
         public HttpClient HttpProvider { get; private set; }
